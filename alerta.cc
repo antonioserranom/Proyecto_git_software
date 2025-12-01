@@ -1,4 +1,4 @@
-#include "alarm.h"
+#include "alerta.h"
 
 alarma::alarma(const Estudiante& estudiante, const std::string& motivo){
 	estudiante_=estudiante;

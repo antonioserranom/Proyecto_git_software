@@ -1,10 +1,9 @@
 #ifndef ALARM_H
 #define ALARM_H
 
-#include <string>
 #include <ctime>
 
-class Estudiante;
+#include "usuario.h"
 
 class alarma{
 
@@ -26,7 +25,7 @@ public:
 	    std::string GetEstado()const{return Estado_;}
 	    std::string GetComentarios()const{return Comentarios_;}
 	    friend class Tutor;
-	    friend class coordinador;
+	    friend class Coordinador;
 
 };
 
