@@ -1,11 +1,11 @@
-#ifndef ALARM_H
-#define ALARM_H
+#ifndef ALERT_H
+#define ALERT_H
 
 #include <ctime>
 
 #include "usuario.h"
 
-class alarma{
+class alerta{
 
 private:
 	Estudiante estudiante_;
@@ -19,7 +19,7 @@ private:
 	void SetComentarios(const std::string& comentarios);
 
 public:
-		alarma(const Estudiante& estudiante, const std::string& motivo);
+		alerta(const Estudiante& estudiante, const std::string& motivo);
 		std::string GetMotivo()const{return Motivo_;}
 	    std::time_t GetFecha()const{return Fecha_;}
 	    std::string GetEstado()const{return Estado_;}

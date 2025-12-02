@@ -1,6 +1,6 @@
 #include "alerta.h"
 
-alarma::alarma(const Estudiante& estudiante, const std::string& motivo){
+alerta::alerta(const Estudiante& estudiante, const std::string& motivo){
 	estudiante_=estudiante;
 	Motivo_=motivo;
 	Estado_="Pendiente";
@@ -8,11 +8,11 @@ alarma::alarma(const Estudiante& estudiante, const std::string& motivo){
 	Fecha_=std::time(nullptr);
 	}
 
-void alarma::SetMotivo(const std::string& motivo){
+void alerta::SetMotivo(const std::string& motivo){
 	Motivo_=motivo;
 }
 
-void alarma::SetEstado(const std::string& estado){
+void alerta::SetEstado(const std::string& estado){
 	if (estado == "Pendiente" || estado == "En seguimiento" || estado == "Resuelta") {
 	        Estado_ = estado;
 	    } else {
@@ -20,11 +20,11 @@ void alarma::SetEstado(const std::string& estado){
 	    }
 }
 
-void alarma::SetComentarios(const std::string& comentarios){
+void alerta::SetComentarios(const std::string& comentarios){
 	Comentarios_=comentarios;
 }
 
-void alarma::SetFecha(const std::time_t fecha){
+void alerta::SetFecha(const std::time_t fecha){
 	Fecha_=fecha;
 }
 
