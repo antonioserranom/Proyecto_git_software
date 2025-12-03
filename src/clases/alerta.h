@@ -1,5 +1,11 @@
-#ifndef ALERT_H
-#define ALERT_H
+/**
+ * @file alerta.h
+ * @brief Contiene la definicion de la clase alerta.
+ * @author Adrian Sanchez Prieto
+ * @date 25/11/25
+ */
+#ifndef ALERTA_H
+#define ALERTA_H
 
 #include <ctime>
 

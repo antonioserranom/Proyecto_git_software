@@ -1,3 +1,9 @@
+/**
+ * @file usuario.h
+ * @brief Contiene la definición de la clase Usuario y derivadas.
+ * @author Antonio Serrano Maldonado
+ * @date 26/11/25
+ */
 #ifndef USER_H
 #define USER_H
 
@@ -9,12 +15,12 @@
 
 class Usuario{
 private:
-	std::string Id_, nombre_, email_;
+	std::string id_, nombre_, email_;
 
 public:
 	Usuario(const std::string& id, const std::string& nombre, const std::string& email);
-	bool Autentificar();
-	std::string GetId(){return Id_;}
+	bool Autentificar();//pendiente
+	std::string GetId(){return id_;}
 	std::string GetNombre(){return nombre_;}
 	std::string GetEmail(){return email_;}
 	bool SetId(const std::string& id);
@@ -42,7 +48,7 @@ public:
 	bool SetProgreso(const std::string& progeso);
 
 
-	Mensaje EnviarMensaje(const Tutor& tutor);
+	Mensaje EnviarMensaje(const Tutor& tutor);//pendiente
 
 };
 
@@ -57,8 +63,8 @@ public:
 	bool SetFacultad(const std::string& facultad);
 	bool SetHorario(const std::string& horario);
 
-	Mensaje EnviarMensaje(const Estudiante& estudiante);
-	void GestionarAlerta(const Alerta& alerta);
+	Mensaje EnviarMensaje(const Estudiante& estudiante);//pendiente
+	void GestionarAlerta(const Alerta& alerta);//pendiente
 
 };
 
@@ -72,8 +78,8 @@ public:
 	std::string GetResponsabilidades(){return responsabilidades_;}
 	bool SetFacultad(const std::string& facultad);
 	bool SetResponsabilidades(const std::string& responsabilidades);
-	std::list<Asignacion> EjecutarAsignacionAutomatica();
+	std::list<Asignacion> EjecutarAsignacionAutomatica();//pendiente
 };
 
-
+bool es_id_valido(const std::string& id);
 #endif

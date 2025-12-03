@@ -1,3 +1,9 @@
+/**
+ * @file alerta.cc
+ * @brief Contiene la implementacion de la clase alerta.
+ * @author Adrian Sanchez Prieto
+ * @date 25/11/25
+ */
 #include "alerta.h"
 
 alerta::alerta(const Estudiante& estudiante, const std::string& motivo){
