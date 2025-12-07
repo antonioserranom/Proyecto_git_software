@@ -7,18 +7,16 @@
 #ifndef ALERTA_H
 #define ALERTA_H
 
-#include <ctime>
-
 #include "usuario.h"
 
 class alerta{
 
 private:
 	Estudiante estudiante_;
-	std::string Motivo_;
-	std::time_t Fecha_;
-	std::string Estado_;
-	std::string Comentarios_;
+	std::string motivo_;
+	std::time_t fecha_;
+	std::string estado_;
+	std::string comentarios_;
 	void SetMotivo(const std::string& motivo);
 	void SetFecha(std::time_t fecha);
 	void SetEstado(const std::string& estado);
@@ -26,10 +24,10 @@ private:
 
 public:
 		alerta(const Estudiante& estudiante, const std::string& motivo);
-		std::string GetMotivo()const{return Motivo_;}
-	    std::time_t GetFecha()const{return Fecha_;}
-	    std::string GetEstado()const{return Estado_;}
-	    std::string GetComentarios()const{return Comentarios_;}
+		std::string GetMotivo()const{return motivo_;}
+	    std::time_t GetFecha()const{return fecha_;}
+	    std::string GetEstado()const{return estado_;}
+	    std::string GetComentarios()const{return comentarios_;}
 	    friend class Tutor;
 	    friend class Coordinador;
 

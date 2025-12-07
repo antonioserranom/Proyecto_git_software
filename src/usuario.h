@@ -12,6 +12,7 @@
 #include "asignacion.h"
 #include <string>
 #include <list>
+#include <ctime>
 
 class Usuario{
 private:
