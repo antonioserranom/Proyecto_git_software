@@ -8,9 +8,9 @@
  #include "mensaje.h"
 
 
- mensaje::mensaje(const Usuario& remitente, const Usuario& destinatario, const std::string& contenido, const std::time_t fecha_envio){
-    remitente_=remitente;
-    destinatario_=destinatario;
+ Mensaje::Mensaje(const Estudiante& usuario1, const Tutor& usuario2, const std::string& contenido, const std::time_t fecha_envio){
+    usuario1_=usuario1;
+    usuario2_=usuario2;
     contenido_=contenido;
     fecha_envio_=fecha_envio;
  }

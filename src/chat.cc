@@ -7,13 +7,9 @@
 
 #include "chat.h"
 
- chat::chat(const Usuario& remitente, const Usuario& destinatario){
+ Chat::Chat(const Estudiante& usuario1, const Tutor& usuario2){
  
-    remitente_=remitente;
-    destinatario_=destinatario;
+    usuario1_=usuario1;
+    usuario2_=usuario2;
 }
 
-void chat::EnviarMensaje(const mensaje& mensaje) {
-    
-    mensajes_.push_back(mensaje);
-}

@@ -9,17 +9,17 @@
 
 #include "usuario.h"
 
-class mensaje{
+class Mensaje{
 
 private:
-    Usuario remitente_;
-    Usuario destinatario_;
+    Estudiante usuario1_;
+    Tutor usuario2_;
     std::string contenido_;
     std::time_t fecha_envio_;
 public:
-    mensaje(const Usuario& remitente, const Usuario& destinatario, const std::string& contenido, const std::time_t fecha_envio);
-    Usuario GetRemitente()const{return remitente_;}
-    Usuario GetDestinatario()const{return destinatario_;}
+    Mensaje(const Estudiante& usuario1, const Tutor& Usuario2, const std::string& contenido, const std::time_t fecha_envio);
+    Estudiante GetRemitente()const{return usuario1_;}
+    Tutor GetDestinatario()const{return usuario2_;}
     std::string GetContenido()const{return contenido_;}
     std::time_t GetFecha_envio()const{return fecha_envio_;}
 };

@@ -11,20 +11,20 @@
 #include "usuario.h"
 #include <vector>
 
-class chat{
+class Chat{
 
 private:
 
-    Usuario remitente_;
-    Usuario destinatario_;
-    std::vector<mensaje> mensajes_;
+    Estudiante usuario1_;
+    Tutor usuario2_;
+    std::vector<Mensaje> mensajes_;
 
 public:
-    chat(const Usuario& remitente, const Usuario& destinatario);
-    Usuario GetRemitente()const{return remitente_;}
-    Usuario GetDestinatario()const{return destinatario_;}
-    std::vector<mensaje> GetMensajes(){return mensajes_;}
-    void EnviarMensaje(const mensaje& mensaje);};
+    Chat(const Estudiante& usuario1, const Tutor& usuario2);
+    Estudiante GetRemitente()const{return usuario1_;}
+    Tutor GetDestinatario()const{return usuario2_;}
+    std::vector<Mensaje> GetMensajes(){return mensajes_;}
+};
 
 
 
