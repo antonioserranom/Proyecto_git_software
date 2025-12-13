@@ -37,3 +37,5 @@ Create table Alerta(
         Estado IN ('en seguimiento', 'pendiente', 'resuelta')
     )
 );
+
+
