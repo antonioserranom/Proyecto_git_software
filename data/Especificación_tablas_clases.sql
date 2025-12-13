@@ -38,4 +38,38 @@ Create table Alerta(
     )
 );
 
+Create Table Chat (
+    id_chat INT PRIMARY KEY,
+    id_estudiante VARCHAR(20) NOT NULL,
+    id_tutor VARCHAR(20) NOT NULL,
+    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_chat_estudiante FOREIGN KEY (id_estudiante) REFERENCES Estudiante(id_usuario),
+    CONSTRAINT fk_chat_tutor FOREIGN KEY (id_tutor) REFERENCES Tutor(id_usuario)
+);
 
+CREATE TABLE Mensaje (
+    id_mensaje INT PRIMARY KEY,
+    id_chat INT NOT NULL,
+    contenido TEXT NOT NULL,
+    fecha_envio DATETIME DEFAULT
+    
+    enviado_por_estudiante BOOLEAN NOT NULL,
+
+    CONSTRAINT fk_mensaje_chat FOREIGN KEY (id_chat) REFERENCES Chat(id_chat) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Asignaciones (
+    id INT PRIMARY KEY,
+
+    estudiante_id INT NOT NULL,
+    tutor_id INT NOT NULL,
+    
+    criterios TEXT,
+    fecha_asignacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    modificaciones TEXT, 
+
+    CONSTRAINT fk_estudiante FOREIGN KEY (estudiante_id) REFERENCES Estudiantes(id),
+    CONSTRAINT fk_tutor FOREIGN KEY (tutor_id) REFERENCES Tutores(id)
+);
