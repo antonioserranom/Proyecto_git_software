@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+0f288c6b3b46ae1fe3dadf2edcade80e CMakeFiles/SITAPI_autogen
+0f288c6b3b46ae1fe3dadf2edcade80e CMakeFiles/SITAPI_autogen_timestamp_deps
+bf840d8645c77edea0b5fb6e403c6941 SITAPI_autogen/timestamp
