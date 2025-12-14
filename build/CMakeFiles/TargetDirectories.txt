@@ -1,5 +1,0 @@
-/home/serranoo/Desktop/proyecto-git-software/build/CMakeFiles/SITAPI.dir
-/home/serranoo/Desktop/proyecto-git-software/build/CMakeFiles/edit_cache.dir
-/home/serranoo/Desktop/proyecto-git-software/build/CMakeFiles/rebuild_cache.dir
-/home/serranoo/Desktop/proyecto-git-software/build/CMakeFiles/SITAPI_autogen_timestamp_deps.dir
-/home/serranoo/Desktop/proyecto-git-software/build/CMakeFiles/SITAPI_autogen.dir
