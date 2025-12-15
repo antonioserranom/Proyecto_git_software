@@ -3,6 +3,8 @@
 
 #include <sqlite3.h>
 #include <string>
+#include <fstream>
+#include <sstream>
 
 class BaseDatos {
 private:
@@ -14,9 +16,12 @@ private:
 public:
     ~BaseDatos();
     static BaseDatos* getInstancia();
-    bool abrirConexion();
+    bool abrirConexion(std::string ruta);
     void cerrarConexion();
     sqlite3* getDB() const;
+    bool inicializarEsquema();
+    bool estaVacia();
+    bool importarDesdeArchivo(std::string rutaArchivo);
     bool ejecutarSQL(std::string sql, int (*callback)(void*, int, char**, char**) = nullptr, void* data = nullptr);
 };
 

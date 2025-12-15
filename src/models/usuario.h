@@ -78,5 +78,5 @@ public:
 	bool SetResponsabilidades(const std::string& responsabilidades);
 };
 
-bool es_id_valido(const std::string& id);
+
 #endif

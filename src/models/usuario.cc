@@ -9,7 +9,7 @@
 
 bool Usuario::SetId(const std::string& id){
 	bool flag = false;
-	if(!es_id_valido(id)){
+	if(id == ""){
 		id_="Unknown";
 		return flag;
 	}else{
@@ -156,26 +156,3 @@ Coordinador::Coordinador(const std::string& id, const std::string& nombre, const
 }
 
 
-
-
-bool es_id_valido(const std::string& id) {
-    /*const std::string LETRAS_ID = "TRWAGMYFPDXBNJZSQVHLCKE";
-
-    if (id.length() != 9) return false;
-
-    std::string numero_str = id.substr(0, 8);
-    char letra_recibida = std::toupper(id[8]);
-
-    for (char c : numero_str) {
-        if (!std::isdigit(c)) return false;
-    }
-
-    try {
-        int numero_dni = std::stoi(numero_str);
-        char letra_calculada = LETRAS_ID[numero_dni % 23];
-        return (letra_recibida == letra_calculada);
-    } catch (const std::exception& e) {
-        return false;
-    }*/
-   return true;
-}

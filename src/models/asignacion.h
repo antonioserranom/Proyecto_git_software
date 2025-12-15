@@ -20,6 +20,7 @@ class Asignacion{
     public:
 
     Asignacion(const int& id, const std::string& id_estudiante, const std::string& id_tutor, const std::string& criterios, const std::string& fecha, const std::string& modificiaciones);
+    int GetId(){return id_;}
     std::string GetIdEstudiante(){return id_estudiante_;}
     std::string GetIdTutor(){return id_tutor_;}
     std::string GetCriterios(){return criterios_;}

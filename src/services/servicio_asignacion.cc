@@ -93,3 +93,7 @@ std::string AssignmentService::GetTutorDeEstudiante(std::string idEstudiante) {
     }
     return "";
 }
+
+std::vector<Asignacion> AssignmentService::ConsultarTodasLasAsignaciones(){
+    return repoAsignaciones.obtenerTodas();
+}
