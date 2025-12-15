@@ -20,13 +20,13 @@ std::vector<Coordinador> CoordinadorRepository::obtenerTodos() {
     return listaResultado;
 }
 
-Coordinador CoordinadorRepository::buscarPorId(std::string id) {
+std::optional<Coordinador> CoordinadorRepository::buscarPorId(std::string id) {
     std::vector<Coordinador> listaResultado;
     std::string sql = "SELECT * FROM Coordinador WHERE id = '" + id + "';";
     BaseDatos::getInstancia()->ejecutarSQL(sql, callback_coordinador, &listaResultado);
     
     if (listaResultado.empty()) {
-        return Coordinador("", "", "", "", "");
+        return std::nullopt;
     }
     return listaResultado[0];
 }

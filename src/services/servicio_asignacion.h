@@ -16,6 +16,8 @@ private:
 public:
     bool RealizarAsignacionAutomatica();
     std::vector<Asignacion> VerHistorialDeEstudiante(std::string idEstudiante);
+    std::vector<Estudiante> GetAlumnosDeTutor(std::string idTutor);
+    std::string GetTutorDeEstudiante(std::string idEstudiante);
 };
 
 #endif

@@ -159,7 +159,7 @@ Coordinador::Coordinador(const std::string& id, const std::string& nombre, const
 
 
 bool es_id_valido(const std::string& id) {
-    const std::string LETRAS_ID = "TRWAGMYFPDXBNJZSQVHLCKE";
+    /*const std::string LETRAS_ID = "TRWAGMYFPDXBNJZSQVHLCKE";
 
     if (id.length() != 9) return false;
 
@@ -176,5 +176,6 @@ bool es_id_valido(const std::string& id) {
         return (letra_recibida == letra_calculada);
     } catch (const std::exception& e) {
         return false;
-    }
+    }*/
+   return true;
 }

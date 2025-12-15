@@ -24,6 +24,13 @@ std::vector<Estudiante> EstudianteRepository::obtenerTodos() {
     return listaResultado;
 }
 
+std::vector<Estudiante> EstudianteRepository::obtenerPorTutor(std::string idTutor) {
+    std::vector<Estudiante> listaResultado;
+    std::string sql = "SELECT * FROM Estudiante WHERE id_tutor = '" + idTutor + "';";
+    BaseDatos::getInstancia()->ejecutarSQL(sql, callback_estudiantes, &listaResultado);
+    return listaResultado;
+}
+
 std::optional<Estudiante> EstudianteRepository::buscarPorId(std::string id) {
     std::vector<Estudiante> listaResultado;
     std::string sql = "SELECT * FROM Estudiante WHERE id = '" + id + "';";

@@ -21,13 +21,13 @@ std::vector<Tutor> TutorRepository::obtenerTodos() {
     return listaResultado;
 }
 
-Tutor TutorRepository::buscarPorId(std::string id) {
+std::optional<Tutor> TutorRepository::buscarPorId(std::string id) {
     std::vector<Tutor> listaResultado;
     std::string sql = "SELECT * FROM Tutor WHERE id = '" + id + "';";
     BaseDatos::getInstancia()->ejecutarSQL(sql, callback_tutor, &listaResultado);
     
     if (listaResultado.empty()) {
-        return Tutor("", "", "", "", "", "");
+        return std::nullopt;
     }
     return listaResultado[0];
 }

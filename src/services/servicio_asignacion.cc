@@ -1,7 +1,7 @@
 #include "servicio_asignacion.h"
 #include <map>
 
-const int MAX_ALUMNOS_POR_TUTOR = 5;
+const int MAX_ALUMNOS_POR_TUTOR = 10;
 
 bool AssignmentService::RealizarAsignacionAutomatica() {
     std::vector<Tutor> tutores = repoTutores.obtenerTodos();
@@ -77,4 +77,19 @@ bool AssignmentService::RealizarAsignacionAutomatica() {
 
 std::vector<Asignacion> AssignmentService::VerHistorialDeEstudiante(std::string idEstudiante) {
     return repoAsignaciones.obtenerPorEstudiante(idEstudiante);
+}
+
+std::vector<Estudiante> AssignmentService::GetAlumnosDeTutor(std::string idTutor) {
+    return repoEstudiantes.obtenerPorTutor(idTutor);
+}
+
+std::string AssignmentService::GetTutorDeEstudiante(std::string idEstudiante) {
+    auto estudianteOpt = repoEstudiantes.buscarPorId(idEstudiante);
+    if (estudianteOpt.has_value()) {
+        std::string idTutor = estudianteOpt->GetIdTutor();
+        if (idTutor != "Unknown" && idTutor != "NULL" && !idTutor.empty()) {
+            return idTutor;
+        }
+    }
+    return "";
 }

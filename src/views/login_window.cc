@@ -25,7 +25,7 @@ void LoginWindow::setupUi() {
 
     QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
     
-    titleLabel = new QLabel("SITAPI - GESTIÓN DE TUTORÍAS", centralWidget);
+    titleLabel = new QLabel("SITAPI", centralWidget);
     titleLabel->setAlignment(Qt::AlignCenter);
     titleLabel->setStyleSheet("font-size: 20pt; font-weight: bold; margin-bottom: 20px;");
     mainLayout->addWidget(titleLabel);

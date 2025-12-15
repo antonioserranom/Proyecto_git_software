@@ -1,6 +1,7 @@
 #include "main_window.h"
 #include <QMessageBox>
 #include <QTableWidgetItem>
+#include <iostream>
 
 MainWindow::MainWindow(QString idUsuario, QString rol, QWidget *parent)
     : QMainWindow(parent), currentUserId(idUsuario), currentUserRole(rol) {
@@ -116,11 +117,12 @@ void MainWindow::setupStudentView() {
 
     tabs->addTab(tabGestion, "Mi Tutoría");
     
-    std::vector<Chat> chats = chatService.ObtenerChatsDeEstudiante(currentUserId.toStdString());
-    if (!chats.empty()) {
-        listaPersonas->addItem(QString::fromStdString(chats[0].GetIdTutor()));
+    std::string idTutor = assignmentService.GetTutorDeEstudiante(currentUserId.toStdString());
+    if (!idTutor.empty()) {
+        listaPersonas->addItem(QString::fromStdString(idTutor));
     } else {
-        listaPersonas->addItem("Sin tutor asignado o sin chat previo");
+        listaPersonas->addItem("Pendiente de Asignación");
+        btnAbrirChat->setEnabled(false);
     }
 }
 
@@ -128,9 +130,16 @@ void MainWindow::refrescarListaEstudiantes() {
     if (currentUserRole != "TUTOR") return;
 
     listaPersonas->clear();
-    std::vector<Chat> chats = chatService.ObtenerChatsDeTutor(currentUserId.toStdString());
-    for (const auto& c : chats) {
-        listaPersonas->addItem(QString::fromStdString(c.GetIdEstudiante()));
+    std::vector<Estudiante> misAlumnos = assignmentService.GetAlumnosDeTutor(currentUserId.toStdString());
+    
+    if (misAlumnos.empty()) {
+        listaPersonas->addItem("No hay estudiantes asignados.");
+        return;
+    }
+
+    for (auto& est : misAlumnos) {
+        QString itemText = QString::fromStdString(est.GetId()) + " - " + QString::fromStdString(est.GetNombre());
+        listaPersonas->addItem(itemText);
     }
 }
 
@@ -138,15 +147,19 @@ void MainWindow::refrescarTablaAlertas() {
     if (!tablaAlertas) return;
     
     tablaAlertas->setRowCount(0);
-    std::vector<Alerta> alertas = alertService.ConsultarTodasLasAlertas();
+    std::vector<Estudiante> misAlumnos = assignmentService.GetAlumnosDeTutor(currentUserId.toStdString());
     
-    for (auto& a : alertas) {
-        int row = tablaAlertas->rowCount();
-        tablaAlertas->insertRow(row);
-        tablaAlertas->setItem(row, 0, new QTableWidgetItem(QString::number(a.GetId())));
-        tablaAlertas->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(a.GetIdEstudiante())));
-        tablaAlertas->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(a.GetMotivo())));
-        tablaAlertas->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(a.GetEstado())));
+    for (auto& alumno : misAlumnos) {
+        std::vector<Alerta> alertasAlumno = alertService.ConsultarAlertasPorEstudiante(alumno.GetId());
+        
+        for (auto& a : alertasAlumno) {
+            int row = tablaAlertas->rowCount();
+            tablaAlertas->insertRow(row);
+            tablaAlertas->setItem(row, 0, new QTableWidgetItem(QString::number(a.GetId())));
+            tablaAlertas->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(a.GetIdEstudiante())));
+            tablaAlertas->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(a.GetMotivo())));
+            tablaAlertas->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(a.GetEstado())));
+        }
     }
 }
 
@@ -166,7 +179,11 @@ void MainWindow::on_btnAbrirChat_clicked() {
         return;
     }
 
-    std::string targetId = item->text().toStdString();
+    QString textoItem = item->text();
+    if (textoItem.contains("No hay") || textoItem.contains("Pendiente")) return;
+
+    QString targetIdQ = textoItem.split(" ")[0];
+    std::string targetId = targetIdQ.toStdString();
     
     std::string idEst = (currentUserRole == "ESTUDIANTE") ? currentUserId.toStdString() : targetId;
     std::string idTut = (currentUserRole == "TUTOR") ? currentUserId.toStdString() : targetId;
@@ -188,9 +205,15 @@ void MainWindow::on_btnGenerarAlerta_clicked() {
         return;
     }
     
-    std::string idEst = item->text().toStdString();
+    QString textoItem = item->text();
+    if (textoItem.contains("No hay") || textoItem.contains("Pendiente")) return;
+
+    std::string idEst = textoItem.split(" ")[0].toStdString();
+
     if (alertService.GenerarAlerta(idEst, "Alerta Manual generada por Tutor")) {
         QMessageBox::information(this, "Éxito", "Alerta generada correctamente.");
         refrescarTablaAlertas();
+    } else {
+        QMessageBox::warning(this, "Error", "No se pudo generar la alerta.");
     }
 }
