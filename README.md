@@ -33,7 +33,7 @@ cmake ..
 make
 ./SITAPI
 ```
-Con esto el programa se iniciará, un ejecutable se abra creado listo para abrir con doble click.
+Con esto el programa se iniciará, un ejecutable se habrá creado listo para abrir con doble click.
 
 ## Autores
 
