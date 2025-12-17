@@ -20,9 +20,9 @@ static int callback_mensajes(void* listaPtr, int argc, char** argv, char** azCol
     Mensaje m(
         id,
         id_chat,
-        argv[1] ? argv[1] : "", 
         argv[2] ? argv[2] : "", 
-        argv[3] ? argv[3] : ""  
+        argv[3] ? argv[3] : "", 
+        argv[4] ? argv[4] : ""  
     );
     lista->push_back(m);
     return 0;

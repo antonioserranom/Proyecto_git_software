@@ -83,3 +83,48 @@ endif()
 
 # Mensaje de éxito al configurar
 message(STATUS "Configuración de SITAPI completada. Listo para compilar.")
+
+# ------------------------------------------------------------------------------
+# 8. CONFIGURACIÓN DE TESTS (Google Test)
+# ------------------------------------------------------------------------------
+# Buscamos si GTest está instalado
+find_package(GTest)
+
+if(GTest_FOUND)
+    message(STATUS "Google Test encontrado. Configurando pruebas...")
+    enable_testing()
+
+    # 1. Recopilamos los archivos de lógica (src) OTRA VEZ
+    # Importante: Lo hacemos de nuevo para NO incluir "main.cc"
+    file(GLOB_RECURSE SRC_PARA_TESTS 
+        "src/*.cc" 
+        "src/*.cpp"
+    )
+
+    # 2. Creamos el ejecutable "run_tests"
+    # Junta tu archivo de tests + toda la lógica de tu programa
+    add_executable(run_tests 
+        tests/unit_tests.cc
+        ${SRC_PARA_TESTS}
+    )
+
+    # 3. Le damos acceso a las librerías necesarias
+    target_link_libraries(run_tests PRIVATE
+        GTest::gtest
+        GTest::gtest_main
+        SQLite::SQLite3
+        Qt6::Sql
+        Qt6::Widgets
+    )
+    
+    # 4. Aseguramos que pueda encontrar los .h de tu carpeta src
+    target_include_directories(run_tests PRIVATE 
+        ${CMAKE_SOURCE_DIR}
+    )
+
+    # 5. Registramos el test (para poder usar ctest si quieres)
+    add_test(NAME UnitTests COMMAND run_tests)
+
+else()
+    message(WARNING "Google Test NO encontrado. Saltando configuración de pruebas. (Ejecuta: sudo apt install libgtest-dev)")
+endif()

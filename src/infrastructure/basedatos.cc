@@ -60,8 +60,8 @@ bool BaseDatos::inicializarEsquema(){
 
         CREATE TABLE IF NOT EXISTS TUTOR (
             id VARCHAR(9) PRIMARY KEY,
-            nombre VARCHAR(100) NOT NULL,
-            email VARCHAR(100) NOT NULL,
+            nombre VARCHAR(100),
+            email VARCHAR(100),
             horario VARCHAR(50),
             area_conocimiento VARCHAR(100),
             facultad VARCHAR(100)
